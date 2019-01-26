@@ -7,8 +7,8 @@ public class RoboCharController : MonoBehaviour
 {
 
     public bool facingRight = true;
-    public bool jump = false;
-    public bool grounded = false;
+    public bool jump = true;
+    public bool grounded = true;
     public float charge = 100;
     //public Transform groundCheck;
     //public GameObject textObj;
@@ -19,9 +19,9 @@ public class RoboCharController : MonoBehaviour
 
     Animator anim;
     bool isBounced;
-    float moveForce = 100f;
+    float moveForce = 300f;
     float maxSpeed = 3f;
-    float jumpForce = 500;
+    float jumpForce = 800;
     //private Animator anim;
     private Rigidbody2D rb2d;
     private bool depleting = true;
@@ -52,7 +52,7 @@ public class RoboCharController : MonoBehaviour
     {
         //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (Input.GetKeyDown("up") || Input.GetKeyDown("space") && Input.GetKeyDown("w") && grounded && !jump)
+        if ((Input.GetKeyDown("up") || Input.GetKeyDown("space") || Input.GetKeyDown("w")) && grounded && !jump)
         {
             jump = true;
         }
