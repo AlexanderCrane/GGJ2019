@@ -9,6 +9,7 @@ public class RoboCharController : MonoBehaviour
     public bool facingRight = true;
     public bool jump = false;
     public bool grounded = false;
+    public float charge = 100;
     //public Transform groundCheck;
     //public GameObject textObj;
     //public Text textComp;
@@ -20,9 +21,10 @@ public class RoboCharController : MonoBehaviour
     bool isBounced;
     float moveForce = 100f;
     float maxSpeed = 3f;
-    float jumpForce = 2000f;
+    float jumpForce = 500;
     //private Animator anim;
     private Rigidbody2D rb2d;
+    private bool depleting = true;
 
 
     // Use this for initialization
@@ -55,6 +57,12 @@ public class RoboCharController : MonoBehaviour
             jump = true;
         }
 
+        if(depleting)
+        {
+            charge -= 0.01f;
+
+            //Debug.Log(charge);
+        }
     }
 
     void FixedUpdate()
@@ -176,7 +184,20 @@ public class RoboCharController : MonoBehaviour
         if (other.gameObject.tag == "Obstacle")
         {
         }
+        else if(other.gameObject.tag == "Recharge")
+        {
+            charge = 100;
+            depleting = false;
+        }
 
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Recharge")
+        {
+            depleting = true;
+        }
     }
 
     IEnumerator waitPls()
