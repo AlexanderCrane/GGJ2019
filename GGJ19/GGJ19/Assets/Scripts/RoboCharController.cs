@@ -25,7 +25,9 @@ public class RoboCharController : MonoBehaviour
     public AudioSource damageSound;
     public GameObject livesText;
     public TextMeshProUGUI lv;
-
+    public GameObject pauseMenu;
+    public GameObject gameOver;
+    bool paused = false;
 
     Animator anim;
     GameObject shotBullet;
@@ -60,6 +62,14 @@ public class RoboCharController : MonoBehaviour
         bullet = GameObject.Find("Projectile");
 
         lv = livesText.GetComponent<TextMeshProUGUI>();
+
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        pauseMenu.SetActive(false);
+
+        gameOver = GameObject.FindGameObjectWithTag("GameOver");
+        gameOver.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -84,20 +94,35 @@ public class RoboCharController : MonoBehaviour
             {
                 lv.text = "Lives: 1";
             }
-            else
+            else if(lives == 0)
             {
                 lv.text = "Lives: 0";
-                Application.Quit();
+            }
+            else
+            {
+                gameOver.SetActive(true);
                 //game over
+
             }
         }
 
-        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump && canMove)
+        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump && canMove && !paused)
         {
             jump = true;
         }
 
-        if(Input.GetKeyDown("space") || Input.GetButtonDown("Fire3") && canMove)
+        if(Input.GetButtonDown("Cancel") && !paused)
+        {
+            paused = true;
+            pauseMenu.SetActive(true);
+        }
+        else if (Input.GetButtonDown("Cancel") && paused)
+        {
+            paused = false;
+            pauseMenu.SetActive(false);
+        }
+
+        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire3") && canMove)
         {
             //shoot projectile
 

@@ -8,6 +8,8 @@ TagManager:
   - Recharge
   - Deadly
   - DeadlyToEnemies
+  - PauseMenu
+  - GameOver
   layers:
   - Default
   - TransparentFX
