@@ -22,13 +22,19 @@ public class RoboCharController : MonoBehaviour
     public float maxSpeed = 3f;
     public float jumpForce = 800;
     public bool canMove = true;
-    public AudioSource damageSound;
     public GameObject livesText;
     public TextMeshProUGUI lv;
     public GameObject pauseMenu;
     public GameObject gameOver;
+    public GameObject gameWin;
     bool paused = false;
     public GameObject rechargeStation;
+
+    public AudioSource damageSound;
+    public AudioSource jumpSound;
+    public AudioSource dieSound;
+    public AudioSource landSound;
+    public AudioSource shootSound;
 
     Animator anim;
     GameObject shotBullet;
@@ -70,6 +76,9 @@ public class RoboCharController : MonoBehaviour
         gameOver = GameObject.FindGameObjectWithTag("GameOver");
         gameOver.SetActive(false);
 
+        gameWin = GameObject.FindGameObjectWithTag("GameWin");
+        gameWin.SetActive(false);
+
         rechargeStation = GameObject.FindGameObjectWithTag("Recharge");
     }
 
@@ -82,6 +91,8 @@ public class RoboCharController : MonoBehaviour
         {
             lives -= 1;
             charge = 100;
+
+            dieSound.Play();
 
             if(lives == 3)
             {
@@ -117,6 +128,7 @@ public class RoboCharController : MonoBehaviour
         if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump && canMove && !paused)
         {
             jump = true;
+            jumpSound.Play();
         }
 
         if(Input.GetButtonDown("Cancel") && !paused)
@@ -134,6 +146,7 @@ public class RoboCharController : MonoBehaviour
         {
             //shoot projectile
 
+            shootSound.Play();
 
             if (facingRight && !bulletShot)
             {
@@ -211,6 +224,7 @@ public class RoboCharController : MonoBehaviour
         if (collision.gameObject.tag == "EndGoal")
         {
             Debug.Log("End goal reached!");
+            gameWin.SetActive(true);
 
         }
         else if (collision.gameObject.tag == "Deadly")
@@ -241,7 +255,7 @@ public class RoboCharController : MonoBehaviour
 
 
             //anim.SetInteger("State", 0);
-
+            landSound.Play();
 
             grounded = true;
             isBounced = false;
