@@ -274,7 +274,7 @@ public class RoboCharController : MonoBehaviour
     {
         Debug.Log("Waiting");
         //returning 0 will make it wait 1 frame
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
 
         //code goes here

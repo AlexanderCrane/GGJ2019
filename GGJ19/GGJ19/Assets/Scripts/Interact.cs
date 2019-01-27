@@ -24,7 +24,8 @@ public class Interact : MonoBehaviour {
         if(playerHere && (Input.GetKeyDown("e") || Input.GetButtonDown("Fire4")))
         {
             player.GetComponent<RoboCharController>().recharge();
-            relief.Play();
+            //relief.Play();
+            StartCoroutine(waitToPlayRecharge());
         }
 	}
 
@@ -46,5 +47,16 @@ public class Interact : MonoBehaviour {
             playerHere = false;
         }
     }
+
+    IEnumerator waitToPlayRecharge()
+    {
+        //returning 0 will make it wait 1 frame
+        yield return new WaitForSeconds(2f);
+        relief.Play();
+
+        //code goes here
+
+    }
+
 
 }
