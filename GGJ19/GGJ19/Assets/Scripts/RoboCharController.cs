@@ -16,6 +16,7 @@ public class RoboCharController : MonoBehaviour
     //public GameObject GameOverUI;
     //public GameObject YouWinUI;
     public GameObject bullet;
+    public int lives = 3;
 
     Animator anim;
     GameObject shotBullet;
@@ -53,6 +54,12 @@ public class RoboCharController : MonoBehaviour
     void Update()
     {
         //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        if(charge <= 0f)
+        {
+            lives -= 1;
+            charge = 100;
+        }
 
         if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump)
         {
@@ -223,8 +230,8 @@ public class RoboCharController : MonoBehaviour
         }
         else if(other.gameObject.tag == "Recharge")
         {
-            charge = 100;
-            depleting = false;
+            //charge = 100;
+            //depleting = false;
         }
 
     }
@@ -235,6 +242,12 @@ public class RoboCharController : MonoBehaviour
         {
             depleting = true;
         }
+    }
+
+    public void recharge()
+    {
+        charge = 100;
+        //depleting = true;
     }
 
     IEnumerator waitToShoot()
