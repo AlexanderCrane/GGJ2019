@@ -20,6 +20,8 @@ public class RoboCharController : MonoBehaviour
     public float maxSpeed = 3f;
     public float jumpForce = 800;
     public bool canMove = true;
+    public AudioSource damageSound;
+
 
     Animator anim;
     GameObject shotBullet;
@@ -150,6 +152,8 @@ public class RoboCharController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Deadly")
         {
+            damageSound.Play();
+
 
             if (facingRight)
             {

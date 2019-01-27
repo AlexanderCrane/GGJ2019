@@ -9,7 +9,7 @@ public class ColorChange : MonoBehaviour {
     private Light lite;
     private bool activated = true;
 
-    public AudioSource interactSound;
+    //public AudioSource interactSound;
 
     // Use this for initialization
     void Start () {
@@ -32,7 +32,7 @@ public class ColorChange : MonoBehaviour {
         if (activated == true)
         {
             lite.enabled = false;
-            interactSound.Play();
+            //interactSound.Play();
             activated = false;
         }
 
