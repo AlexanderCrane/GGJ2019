@@ -52,12 +52,17 @@ public class RoboCharController : MonoBehaviour
     {
         //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if ((Input.GetKeyDown("up") || Input.GetKeyDown("space") || Input.GetKeyDown("w")) && grounded && !jump)
+        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && grounded && !jump)
         {
             jump = true;
         }
 
-        if(depleting)
+        if(Input.GetKeyDown("space"))
+        {
+            //shoot projectile
+        }
+
+        if(depleting && charge >= 0.0f)
         {
             charge -= 0.01f;
 

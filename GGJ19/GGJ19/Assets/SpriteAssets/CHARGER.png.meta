@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: 741f679b091b1d541a0646e17f07421f
+guid: 954127e30d1f34a4eb02abe3a54cd35a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: buttons_robot_0
-    21300002: buttons_robot_1
-    21300004: buttons_robot_2
-    21300006: buttons_robot_3
-    21300008: buttons_robot_4
-    21300010: buttons_robot_5
+    21300000: CHARGER_0
+    21300002: CHARGER_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -134,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: buttons_robot_0
+      name: CHARGER_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 64
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,19 +144,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4051522308494a24cbc1862928ea85fb
+      spriteID: da21b5ef819b135499585aa4f79a4221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buttons_robot_1
+      name: CHARGER_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
-        height: 64
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,87 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bae34ebf6bcca84f84166be78bb541c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons_robot_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 847c1d9685f61974e9ce7a0bd0ce8f00
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons_robot_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 290248f1a2ce44544a0dac8c52cb44c0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons_robot_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6de8b5f1430cfb54dabea2b4beec1e28
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons_robot_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 29b0e0baf3a126b4e906d2fadd7df304
+      spriteID: dafad110987d86540a4c2abf64642b53
       vertices: []
       indices: 
       edges: []
@@ -256,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: da8ed8ad64b5dab4a8f78fee81e8db41
+    spriteID: 978bb9661a604bc4bb559bde11f1c2c4
     vertices: []
     indices: 
     edges: []
