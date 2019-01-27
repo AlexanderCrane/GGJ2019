@@ -9,6 +9,8 @@ public class ColorChange : MonoBehaviour {
     private Light lite;
     private bool activated = true;
 
+    public AudioSource interactSound;
+
     // Use this for initialization
     void Start () {
         myColor = this.GetComponentInParent<DoorSwitchColor>().baseColor;
@@ -30,6 +32,7 @@ public class ColorChange : MonoBehaviour {
         if (activated == true)
         {
             lite.enabled = false;
+            interactSound.Play();
             activated = false;
         }
 

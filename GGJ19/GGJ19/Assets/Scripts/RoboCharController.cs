@@ -10,22 +10,21 @@ public class RoboCharController : MonoBehaviour
     public bool jump = true;
     public bool grounded = true;
     public float charge = 100;
-    //public Transform groundCheck;
     //public GameObject textObj;
     //public Text textComp;
     //public GameObject GameOverUI;
     //public GameObject YouWinUI;
     public GameObject bullet;
     public int lives = 3;
+    public float moveForce = 300f;
+    public float maxSpeed = 3f;
+    public float jumpForce = 800;
+    public bool canMove = true;
 
     Animator anim;
     GameObject shotBullet;
     bool bulletShot = false;
     bool isBounced;
-    float moveForce = 300f;
-    float maxSpeed = 3f;
-    float jumpForce = 800;
-    //private Animator anim;
     private Rigidbody2D rb2d;
     private bool depleting = true;
 
@@ -61,12 +60,12 @@ public class RoboCharController : MonoBehaviour
             charge = 100;
         }
 
-        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump)
+        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump && canMove)
         {
             jump = true;
         }
 
-        if(Input.GetKeyDown("space") || Input.GetButtonDown("Fire3"))
+        if(Input.GetKeyDown("space") || Input.GetButtonDown("Fire3") && canMove)
         {
             //shoot projectile
 
@@ -107,16 +106,16 @@ public class RoboCharController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal"); //what is this?
+        float h = Input.GetAxis("Horizontal");
         //Debug.Log(h);
         //anim.SetFloat("Speed", Mathf.Abs(h));
 
-        if (h * rb2d.velocity.x < maxSpeed && !isBounced)
+        if (h * rb2d.velocity.x < maxSpeed && !isBounced && canMove)
         {
             rb2d.AddForce(Vector2.right * h * moveForce);
         }
 
-        if (Mathf.Abs(rb2d.velocity.x) > maxSpeed && !isBounced)
+        if (Mathf.Abs(rb2d.velocity.x) > maxSpeed && !isBounced && canMove)
         {
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
         }
@@ -130,7 +129,7 @@ public class RoboCharController : MonoBehaviour
             Flip();
         }
 
-        if (jump)
+        if (jump && canMove)
         {
             //anim.SetTrigger("Jump");
             rb2d.AddForce(new Vector2(0f, jumpForce));
@@ -232,6 +231,8 @@ public class RoboCharController : MonoBehaviour
         {
             //charge = 100;
             //depleting = false;
+            //anim.SetInteger("State", 1);
+
         }
 
     }
@@ -241,12 +242,17 @@ public class RoboCharController : MonoBehaviour
         if(other.gameObject.tag == "Recharge")
         {
             depleting = true;
+
         }
     }
 
     public void recharge()
     {
         charge = 100;
+        anim.SetInteger("State", 1);
+        canMove = false;
+        StartCoroutine(waitToRecharge());
+
         //depleting = true;
     }
 
@@ -263,5 +269,22 @@ public class RoboCharController : MonoBehaviour
         Debug.Log("Waiting done");
 
     }
+
+    IEnumerator waitToRecharge()
+    {
+        Debug.Log("Waiting");
+        //returning 0 will make it wait 1 frame
+        yield return new WaitForSeconds(2f);
+
+
+        //code goes here
+        canMove = true;
+        anim.SetInteger("State", 0);
+
+
+        Debug.Log("Waiting done");
+
+    }
+
 
 }
