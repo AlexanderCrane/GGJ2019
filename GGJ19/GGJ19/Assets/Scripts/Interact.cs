@@ -33,7 +33,7 @@ public class Interact : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("Collision entered");
+            //Debug.Log("Collision entered");
             icon.SetActive(true);
             playerHere = true;
         }

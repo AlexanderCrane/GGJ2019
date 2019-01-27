@@ -9,9 +9,13 @@ public class AudioController : MonoBehaviour
     private bool audioPlaying = false;
     public AudioSource staticSound;
 
+    public AudioSource song1;
+    public AudioSource song2;
+
     void Start()
     {
         audio = gameObject.GetComponent<AudioSource>();
+        StartCoroutine(waitToLoop());
     }
     void Update()
     {
@@ -20,7 +24,6 @@ public class AudioController : MonoBehaviour
             clipIndex = Random.Range(0, clips.Length - 1);
             audio.clip = clips[clipIndex];
             audio.PlayDelayed(Random.Range(5f, 10f));
-            Debug.Log("Nothing playing, we set new audio to " + audio.clip.name);
         }
     }
 
@@ -47,6 +50,35 @@ public class AudioController : MonoBehaviour
             audio.volume = 1f;
 
         }
+    }
+
+    private void musicPlayer()
+    {
+        //while(true)
+        //{
+            waitToLoop();
+        //}
+
+    }
+
+    IEnumerator waitToLoop()
+    {
+        yield return new WaitForSeconds(17.528f);
+        int song = Random.Range(0, 1);
+
+        if(song == 1)
+        {
+            song1.Play();
+            Debug.Log("Playing song 2");
+
+        }
+        else
+        {
+            song2.Play();
+            Debug.Log("Playing song 2");
+
+        }
+        waitToLoop();
     }
 
 }
