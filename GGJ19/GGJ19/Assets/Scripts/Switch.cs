@@ -23,7 +23,10 @@ public class Switch : MonoBehaviour {
         playerPos = player.transform.position;
         if(playerPos.x <= switchPos.x + 0.2 || playerPos.x <= switchPos.x - 0.2)
         {
-            activate();
+            if (playerPos.y <= switchPos.y + 5.0 || playerPos.y <=switchPos.y - 4.0)
+            {
+                activate();
+            }
         }
     }
 
