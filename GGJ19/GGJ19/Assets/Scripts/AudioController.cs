@@ -64,9 +64,9 @@ public class AudioController : MonoBehaviour
     IEnumerator waitToLoop()
     {
         yield return new WaitForSeconds(17.528f);
-        int song = Random.Range(0, 1);
+        int song = Random.Range(0, 2);
 
-        if(song == 1)
+        if(song == 0)
         {
             song1.Play();
             Debug.Log("Playing song 2");

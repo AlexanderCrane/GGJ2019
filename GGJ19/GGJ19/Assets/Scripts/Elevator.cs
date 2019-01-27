@@ -80,6 +80,7 @@ public class Elevator : MonoBehaviour {
             activated = false;
             Debug.Log("Deactivated");
             player.transform.parent = null;
+            goingUp = false;
             //Debug.Log(player.transform.parent.name);
 
             // playerRB.gravityScale = playerGravity;
@@ -91,6 +92,7 @@ public class Elevator : MonoBehaviour {
             activated = false;
             Debug.Log("Deactivated");
             player.transform.parent = null;
+            goingUp = true;
             //Debug.Log(player.transform.parent.name);
 
             //playerRB.gravityScale = playerGravity;
