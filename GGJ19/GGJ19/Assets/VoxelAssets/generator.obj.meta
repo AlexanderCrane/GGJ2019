@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: d4470dc86599ea24483502a988924199
+guid: c780b00066f37944a9071fb4da1b7917
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: wires_bundle
+    100000: generator
     100002: //RootNode
-    400000: wires_bundle
+    400000: generator
     400002: //RootNode
-    2100000: wires_bundleMat
-    2100002: palette
-    2300000: wires_bundle
-    3300000: wires_bundle
-    4300000: wires_bundle
+    2100000: generatorMat
+    2300000: generator
+    3300000: generator
+    4300000: generator
   externalObjects: {}
   materials:
     importMaterials: 1

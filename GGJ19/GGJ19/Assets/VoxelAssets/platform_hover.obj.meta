@@ -8,6 +8,7 @@ ModelImporter:
     400000: platform_hover
     400002: //RootNode
     2100000: platform_hoverMat
+    2100002: palette
     2300000: platform_hover
     3300000: platform_hover
     4300000: platform_hover

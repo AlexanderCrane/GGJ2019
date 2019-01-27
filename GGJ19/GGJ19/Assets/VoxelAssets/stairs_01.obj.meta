@@ -8,6 +8,7 @@ ModelImporter:
     400000: stairs_01
     400002: //RootNode
     2100000: stairs_01Mat
+    2100002: palette
     2300000: stairs_01
     3300000: stairs_01
     4300000: stairs_01

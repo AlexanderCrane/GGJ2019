@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: d4470dc86599ea24483502a988924199
+guid: 05b7c27795953144e8db46fbb082350e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: wires_bundle
+    100000: battery_door
     100002: //RootNode
-    400000: wires_bundle
+    400000: battery_door
     400002: //RootNode
-    2100000: wires_bundleMat
-    2100002: palette
-    2300000: wires_bundle
-    3300000: wires_bundle
-    4300000: wires_bundle
+    2100000: battery_doorMat
+    2300000: battery_door
+    3300000: battery_door
+    4300000: battery_door
   externalObjects: {}
   materials:
     importMaterials: 1

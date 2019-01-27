@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: d4470dc86599ea24483502a988924199
+guid: e0b6a8d5110177c428cadb305082e275
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: wires_bundle
+    100000: Shelf
     100002: //RootNode
-    400000: wires_bundle
+    400000: Shelf
     400002: //RootNode
-    2100000: wires_bundleMat
-    2100002: palette
-    2300000: wires_bundle
-    3300000: wires_bundle
-    4300000: wires_bundle
+    2100000: ShelfMat
+    2300000: Shelf
+    3300000: Shelf
+    4300000: Shelf
   externalObjects: {}
   materials:
     importMaterials: 1

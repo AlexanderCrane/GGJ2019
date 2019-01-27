@@ -16,8 +16,13 @@ public class RoboEnemy : MonoBehaviour
     private SpriteRenderer mySpriteRenderer;
     private bool paused = false;
     private IEnumerator coroutine;
-
+    public bool gunEnemy = false;
+    public bool flying = false;
     public AudioSource deathSound;
+    public GameObject bullet;
+
+    GameObject shotBullet;
+    bool bulletShot = false;
 
     private IEnumerator delay(float waitTime)
     {
@@ -25,10 +30,50 @@ public class RoboEnemy : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         rb.bodyType = RigidbodyType2D.Dynamic;
         paused = false;
+
+        if (gunEnemy)
+        {
+            if (mySpriteRenderer.flipX == true && !flying)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-20, 0);
+
+                //bulletShot = true;
+            }
+            else if(mySpriteRenderer.flipX == false && !flying)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(20, 0);
+            }
+            else if (mySpriteRenderer.flipX == true && flying)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+                shotBullet.transform.eulerAngles = new Vector3(0, 0, -135);
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-20, -20);
+
+            }
+            else if (mySpriteRenderer.flipX == false && flying)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+                shotBullet.transform.eulerAngles = new Vector3(0, 0, -45);
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(20, -20);
+
+            }
+
+        }
+
     }
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
         obj = GetComponent<GameObject>();
         coroutine = delay(pauseTime);
@@ -37,6 +82,8 @@ public class RoboEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(speed);
         pos = this.transform.position;
+
+        bullet = GameObject.Find("EnemyProjectile");
     }
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -77,4 +124,12 @@ public class RoboEnemy : MonoBehaviour
             deathSound.Play();
         }
     }
+
+    /*IEnumerator waitToShoot()
+    {
+        yield return new WaitForSeconds(3);
+       
+
+        
+    }*/
 }

@@ -51,6 +51,11 @@ public class RoboCharController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        bullet = GameObject.Find("Projectile");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -228,10 +233,29 @@ public class RoboCharController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle")
+        if (other.gameObject.tag == "Deadly")
         {
+
+            damageSound.Play();
+
+
+            if (facingRight)
+            {
+                rb2d.velocity = new Vector2(-10, 7);
+                isBounced = true;
+                charge -= 10f;
+
+            }
+            else
+            {
+                rb2d.velocity = new Vector2(10, 7);
+                isBounced = true;
+                charge -= 10f;
+
+            }
+
         }
-        else if(other.gameObject.tag == "Recharge")
+        else if (other.gameObject.tag == "Recharge")
         {
             //charge = 100;
             //depleting = false;
