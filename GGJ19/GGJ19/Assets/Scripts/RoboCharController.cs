@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RoboCharController : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class RoboCharController : MonoBehaviour
     public float jumpForce = 800;
     public bool canMove = true;
     public AudioSource damageSound;
+    public GameObject livesText;
+    public TextMeshProUGUI lv;
 
 
     Animator anim;
@@ -54,6 +58,8 @@ public class RoboCharController : MonoBehaviour
     private void Start()
     {
         bullet = GameObject.Find("Projectile");
+
+        lv = livesText.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -65,6 +71,25 @@ public class RoboCharController : MonoBehaviour
         {
             lives -= 1;
             charge = 100;
+
+            if(lives == 3)
+            {
+                lv.text = "Lives: 3";
+            }
+            else if(lives == 2)
+            {
+                lv.text = "Lives: 2";
+            }
+            else if(lives == 1)
+            {
+                lv.text = "Lives: 1";
+            }
+            else
+            {
+                lv.text = "Lives: 0";
+                Application.Quit();
+                //game over
+            }
         }
 
         if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump && canMove)
