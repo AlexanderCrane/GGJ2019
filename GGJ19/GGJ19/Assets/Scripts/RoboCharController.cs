@@ -92,9 +92,9 @@ public class RoboCharController : MonoBehaviour
             lives -= 1;
             charge = 100;
 
-            dieSound.Play();
+            dieSound.PlayDelayed(0.5f);
 
-            if(lives == 3)
+            if (lives == 3)
             {
                 lv.text = "Lives: 3";
                 transform.position = rechargeStation.transform.position;
@@ -145,8 +145,6 @@ public class RoboCharController : MonoBehaviour
         if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire3") && canMove)
         {
             //shoot projectile
-
-            shootSound.Play();
 
             if (facingRight && !bulletShot)
             {
@@ -359,6 +357,8 @@ public class RoboCharController : MonoBehaviour
     IEnumerator waitToShoot()
     {
         Debug.Log("Waiting");
+        shootSound.Play();
+
         //returning 0 will make it wait 1 frame
         yield return new WaitForSeconds(0.5f);
 
