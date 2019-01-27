@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Recharge
+  - Deadly
+  - DeadlyToEnemies
   layers:
   - Default
   - TransparentFX

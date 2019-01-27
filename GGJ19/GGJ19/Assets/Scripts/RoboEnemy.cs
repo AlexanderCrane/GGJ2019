@@ -11,12 +11,13 @@ public class RoboEnemy : MonoBehaviour
     public float moveSpeed = 300;
     private GameObject obj;
     private Vector3 speed;
-    private int direction = 1;
 	private Vector3 pos;
 	private Rigidbody2D rb;
     private SpriteRenderer mySpriteRenderer;
     private bool paused = false;
     private IEnumerator coroutine;
+
+    public AudioSource deathSound;
 
     private IEnumerator delay(float waitTime)
     {
@@ -65,4 +66,15 @@ public class RoboEnemy : MonoBehaviour
             mySpriteRenderer.flipX = false;
         }
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "DeadlyToEnemies")
+        {
+            Debug.Log("Trying to kill enemy");
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+            deathSound.Play();
+        }
+    }
 }

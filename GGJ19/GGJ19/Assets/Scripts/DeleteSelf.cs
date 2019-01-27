@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class DeleteSelf : MonoBehaviour {
 
+    public bool shouldDelete = false;
+
 	// Use this for initialization
 	void Start () {
 
         //waitToDelete();
 
-        Destroy(this.gameObject, 3);
-
+        if (shouldDelete)
+        {
+            Destroy(this.gameObject, 0.5f);
+        }
 
     }
 

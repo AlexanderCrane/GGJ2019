@@ -15,9 +15,11 @@ public class RoboCharController : MonoBehaviour
     //public Text textComp;
     //public GameObject GameOverUI;
     //public GameObject YouWinUI;
-
+    public GameObject bullet;
 
     Animator anim;
+    GameObject shotBullet;
+    bool bulletShot = false;
     bool isBounced;
     float moveForce = 300f;
     float maxSpeed = 3f;
@@ -52,22 +54,48 @@ public class RoboCharController : MonoBehaviour
     {
         //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && grounded && !jump)
+        if ((Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetButtonDown("Fire1")) && grounded && !jump)
         {
             jump = true;
         }
 
-        if(Input.GetKeyDown("space"))
+        if(Input.GetKeyDown("space") || Input.GetButtonDown("Fire3"))
         {
             //shoot projectile
+
+
+            if (facingRight && !bulletShot)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(20, 0);
+
+                bulletShot = true;
+                StartCoroutine(waitToShoot());
+                charge -= 10;
+            }
+            else if(!bulletShot)
+            {
+                shotBullet = Instantiate(bullet, transform.position, transform.rotation);
+                shotBullet.GetComponent<DeleteSelf>().shouldDelete = true;
+
+                shotBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-20, 0);
+
+                bulletShot = true;
+                StartCoroutine(waitToShoot());
+                charge -= 10;
+
+            }
         }
 
-        if(depleting && charge >= 0.0f)
+        if (depleting && charge >= 0.0f)
         {
             charge -= 0.01f;
 
             //Debug.Log(charge);
         }
+
     }
 
     void FixedUpdate()
@@ -114,18 +142,22 @@ public class RoboCharController : MonoBehaviour
             Debug.Log("End goal reached!");
 
         }
-        else if (collision.gameObject.tag == "Obstacle")
+        else if (collision.gameObject.tag == "Deadly")
         {
 
             if (facingRight)
             {
-                rb2d.velocity = new Vector2(-5, 5);
+                rb2d.velocity = new Vector2(-10, 7);
                 isBounced = true;
+                charge -= 10f;
+
             }
             else
             {
-                rb2d.velocity = new Vector2(5, 5);
+                rb2d.velocity = new Vector2(10, 7);
                 isBounced = true;
+                charge -= 10f;
+
             }
             //rb2d.AddForce(new Vector2(0f, jumpForce));
         }
@@ -205,14 +237,17 @@ public class RoboCharController : MonoBehaviour
         }
     }
 
-    IEnumerator waitPls()
+    IEnumerator waitToShoot()
     {
-
+        Debug.Log("Waiting");
         //returning 0 will make it wait 1 frame
-        yield return 1;
+        yield return new WaitForSeconds(0.5f);
+
 
         //code goes here
+        bulletShot = false;
 
+        Debug.Log("Waiting done");
 
     }
 
