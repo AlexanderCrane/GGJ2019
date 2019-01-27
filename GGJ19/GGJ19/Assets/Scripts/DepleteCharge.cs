@@ -16,7 +16,7 @@ public class DepleteCharge : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
         //player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<RoboCharController>();
 		

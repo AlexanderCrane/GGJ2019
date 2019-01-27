@@ -17,6 +17,7 @@ public class LerpCam : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         Target = player.transform;
     }
 

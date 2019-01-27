@@ -28,6 +28,7 @@ public class RoboCharController : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameOver;
     bool paused = false;
+    public GameObject rechargeStation;
 
     Animator anim;
     GameObject shotBullet;
@@ -69,7 +70,7 @@ public class RoboCharController : MonoBehaviour
         gameOver = GameObject.FindGameObjectWithTag("GameOver");
         gameOver.SetActive(false);
 
-
+        rechargeStation = GameObject.FindGameObjectWithTag("Recharge");
     }
 
     // Update is called once per frame
@@ -85,18 +86,25 @@ public class RoboCharController : MonoBehaviour
             if(lives == 3)
             {
                 lv.text = "Lives: 3";
+                transform.position = rechargeStation.transform.position;
             }
             else if(lives == 2)
             {
                 lv.text = "Lives: 2";
+                transform.position = rechargeStation.transform.position;
+
             }
             else if(lives == 1)
             {
                 lv.text = "Lives: 1";
+                transform.position = rechargeStation.transform.position;
+
             }
             else if(lives == 0)
             {
                 lv.text = "Lives: 0";
+                transform.position = rechargeStation.transform.position;
+
             }
             else
             {
