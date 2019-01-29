@@ -29,6 +29,7 @@ public class RoboCharController : MonoBehaviour
     public GameObject gameWin;
     bool paused = false;
     public GameObject rechargeStation;
+    public GameObject playerUI;
 
     public AudioSource damageSound;
     public AudioSource jumpSound;
