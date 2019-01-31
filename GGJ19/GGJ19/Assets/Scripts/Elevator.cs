@@ -8,9 +8,12 @@ public class Elevator : MonoBehaviour {
     public GameObject icon;
     public GameObject player;
     Rigidbody2D playerRB;
+    
+    public GameObject topCollider;
+    public GameObject bottomCollider;
 
-    public float bottomPoint = 10f;
-    public float topPoint = 10f;
+    //public float bottomPoint = 10f;
+    //public float topPoint = 10f;
 
     public bool goingUp;
     bool activated;
@@ -50,53 +53,50 @@ public class Elevator : MonoBehaviour {
             }*/
             Debug.Log("Button pressed");
 
-            StartCoroutine(waitToPlaySound());
+            //StartCoroutine(waitToPlaySound());
         }
 
-        if(activated && goingUp && transform.position.y <= topPoint)
+        if(activated && goingUp)
         {
-            //Vector3 newPosition = player.transform.position;
-            //newPosition.z = zOffset;
+            //transform.Translate(Vector2.up * 10 * Time.deltaTime);
+
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, topCollider.transform.position.y), 20 * Time.deltaTime);
+            //Debug.Log("Going Up");
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, topPoint, transform.position.z), 1 * Time.deltaTime);
+            if(transform.position.y >= topCollider.transform.position.y)
+            {
+                Debug.Log("Collided with top");
+                goingUp = false;
+                activated = false;
+
+                player.transform.parent = null;
+
+            }
+        }
+        else if(activated && !goingUp)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, bottomCollider.transform.position.y), 20 * Time.deltaTime);
+
+            //Debug.Log("Going Down");
             //playerRB.gravityScale = 0;
-            // player.transform.Translate(new Vector2(0, 1));
-            //player.transform.position = Vector2.MoveTowards(player.transform.position, new Vector2(player.transform.position.x, topPoint), 2 * Time.deltaTime);
 
-            Debug.Log("Going Up");
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, topPoint, transform.position.z), 2 * Time.deltaTime);
+            if (transform.position.y <= bottomCollider.transform.position.y)
+            {
+                Debug.Log("Collided with bottom");
+                goingUp = true;
+                activated = false;
 
+                player.transform.parent = null;
+
+            }
         }
-        else if(activated && !goingUp && transform.position.y >= bottomPoint)
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, bottomPoint, transform.position.z), 2 * Time.deltaTime);
-            //player.transform.Translate(new Vector2(0,-1));
-            //player.transform.position = Vector2.MoveTowards(player.transform.position, new Vector2(player.transform.position.x, bottomPoint), 2 * Time.deltaTime);
-
-            Debug.Log("Going Down");
-            //playerRB.gravityScale = 0;
-        }
-
-        if(activated && goingUp && player.transform.position.y >= topPoint)
-        {
-            activated = false;
-            Debug.Log("Deactivated");
-            player.transform.parent = null;
-            goingUp = false;
-            //Debug.Log(player.transform.parent.name);
-
-            // playerRB.gravityScale = playerGravity;
-
-        }
-
-        if (activated && !goingUp && player.transform.position.y <= bottomPoint)
-        {
-            activated = false;
-            Debug.Log("Deactivated");
-            player.transform.parent = null;
-            goingUp = true;
-            //Debug.Log(player.transform.parent.name);
-
-            //playerRB.gravityScale = playerGravity;
-
+            //collision.transform.parent = null;
         }
     }
 
@@ -108,6 +108,7 @@ public class Elevator : MonoBehaviour {
             icon.SetActive(true);
             playerHere = true;
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

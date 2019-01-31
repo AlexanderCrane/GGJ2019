@@ -4,26 +4,42 @@ using System.Collections;
 public class AudioController : MonoBehaviour
 {
     public AudioClip[] clips;
+    public AudioClip[] music;
     private int clipIndex;
-    private AudioSource audio;
-    private bool audioPlaying = false;
-    public AudioSource staticSound;
+    private int musicIndex;
+    public AudioSource audio;
+    public AudioSource musicPlayer; //must set reference in scene
 
-    public AudioSource song1;
-    public AudioSource song2;
+    public RoboCharController playerRef;
+
+    //private bool audioPlaying = false;
+    //private bool musicPlaying = false;
+    public AudioSource staticSound;
 
     void Start()
     {
-        audio = gameObject.GetComponent<AudioSource>();
-        StartCoroutine(waitToLoop());
+        //audio = gameObject.GetComponent<AudioSource>();
+        //musicPlayer = gameObject.GetComponent<AudioSource>();
+        playerRef = gameObject.GetComponent<RoboCharController>();
+
     }
     void Update()
     {
+        float charge = playerRef.charge;
+
         if (!audio.isPlaying)
         {
             clipIndex = Random.Range(0, clips.Length - 1);
             audio.clip = clips[clipIndex];
             audio.PlayDelayed(Random.Range(5f, 10f));
+        }
+
+        if(!musicPlayer.isPlaying)
+        {
+            musicIndex = Random.Range(0, music.Length - 1);
+            musicPlayer.clip = music[musicIndex];
+            musicPlayer.Play();
+
         }
     }
 
@@ -50,35 +66,6 @@ public class AudioController : MonoBehaviour
             audio.volume = 1f;
 
         }
-    }
-
-    private void musicPlayer()
-    {
-        //while(true)
-        //{
-            waitToLoop();
-        //}
-
-    }
-
-    IEnumerator waitToLoop()
-    {
-        yield return new WaitForSeconds(17.528f);
-        int song = Random.Range(0, 2);
-
-        if(song == 0)
-        {
-            song1.Play();
-            Debug.Log("Playing song 2");
-
-        }
-        else
-        {
-            song2.Play();
-            Debug.Log("Playing song 2");
-
-        }
-        waitToLoop();
     }
 
 }

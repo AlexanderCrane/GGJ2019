@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354320042074120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.94, y: -3924.3, z: -0.31}
+  m_LocalPosition: {x: 12.83, y: -4508.683, z: -2}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031133741, y: -0.04977417}
+  m_Offset: {x: 0.008149594, y: -0.018371582}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -87,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39600998, y: 0.5093384}
+  m_Size: {x: 0.3174433, y: 0.3272705}
   m_EdgeRadius: 0
 --- !u!95 &95183916993681024
 Animator:
@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e16161c851b644592aea1701bedcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPath: -4.65
-  rightPath: -0.67
+  leftPath: 12.83
+  rightPath: 19.68
   pauseTime: 2
   moveSpeed: 200
   gunEnemy: 1

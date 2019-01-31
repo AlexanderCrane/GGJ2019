@@ -143,7 +143,7 @@ public class RoboCharController : MonoBehaviour
             pauseMenu.SetActive(false);
         }
 
-        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire3") && canMove)
+        if ((Input.GetKeyDown("space") || Input.GetButtonDown("Fire3")) && canMove && Time.timeScale > 0)
         {
             //shoot projectile
 
@@ -174,7 +174,7 @@ public class RoboCharController : MonoBehaviour
 
         if (depleting && charge >= 0.0f)
         {
-            charge -= 0.01f;
+            charge -= 0.5f * Time.deltaTime;
 
             //Debug.Log(charge);
         }
@@ -287,7 +287,7 @@ public class RoboCharController : MonoBehaviour
 
             grounded = false;
 
-            //transform.parent = null;
+            transform.parent = null;
             //dontMove = false;
             //onMovingPlatform = false;
         }
